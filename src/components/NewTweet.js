@@ -19,19 +19,26 @@ class NewTweet extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { text } = this.state;
-    const { dispatch, id } = this.props;
+    const { dispatch, id, correctId } = this.props;
+
     !id && this.props.history.push("/");
 
-    // if this tweet has id here, so this tweet is replying to this tweet id, if not so this is new tweet
+    /* if this tweet has id here, so this tweet is replying to this tweet id,
+       if not so this is new tweet */
     dispatch(handleAddNewTweet(text, id));
+
+    if (!id) {
+      this.props.history.push("/");
+    }
 
     this.setState(() => ({
       text: "",
-      toHome: id ? false : true,
+      toHome: id ? (correctId ? false : true) : true,
     }));
   };
 
   render() {
+    console.log(this.props.correctId);
     const { text } = this.state;
 
     if (this.state.toHome) return <Redirect exact to="/" />;
@@ -61,4 +68,11 @@ class NewTweet extends Component {
   }
 }
 
-export default connect()(NewTweet);
+const mapStateToProps = ({ tweets }, { id }) => ({
+  // correctId --> is the id that sent from tweetPage is correct or not
+  // if isn't correct, so you can create new tweet and after submit go to home page
+  // if this id is correct, so this tweet is exist and the new tweet will reply to the exist tweet
+  correctId: Object.keys(tweets).includes(id),
+});
+
+export default connect(mapStateToProps)(NewTweet);
