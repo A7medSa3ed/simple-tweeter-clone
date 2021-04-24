@@ -4,8 +4,9 @@ import { formatTweet, formatDate } from "../utils/helpers";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { TiHeartOutline } from "react-icons/ti";
 import { TiHeartFullOutline } from "react-icons/ti";
-import { handleToggleTweet } from "../actions/tweets";
+import { handleToggleLikeTweet } from "../actions/tweets";
 import { Link, withRouter } from "react-router-dom";
+
 export class Tweet extends Component {
   handleLike = e => {
     e.preventDefault();
@@ -13,7 +14,7 @@ export class Tweet extends Component {
 
     // todo: Handle Like Tweet
     dispatch(
-      handleToggleTweet({
+      handleToggleLikeTweet({
         id: tweet.id,
         hasLiked: tweet.hasLiked,
         authedUser,
@@ -26,7 +27,6 @@ export class Tweet extends Component {
   };
   render() {
     const { tweet } = this.props;
-
     if (tweet === null)
       return (
         <p style={{ color: "red", padding: "30px" }}>
@@ -82,8 +82,8 @@ export class Tweet extends Component {
 }
 
 // mapStateToProps take 4 argument --> 1- state will get from store, 2- own Componnet props ...etc
+// state is the first parameter to this function that can access state of the store
 // tweetId --> comming from component props (ownProps)
-// state is the first parameter to this function
 
 const mapStateToProps = (state, { tweetId }) => {
   const { authedUser, users, tweets } = state;
@@ -94,6 +94,7 @@ const mapStateToProps = (state, { tweetId }) => {
     tweet: tweet
       ? formatTweet(tweet, users[tweet.author], authedUser, parentTweet)
       : null,
+    tweets,
   };
 };
 

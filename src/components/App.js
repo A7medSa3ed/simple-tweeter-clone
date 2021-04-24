@@ -7,6 +7,7 @@ import Nav from "./Nav";
 import Dashboard from "./Dashboard";
 import NewTweet from "./NewTweet";
 import TweetPage from "./TweetPage";
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handeIntialData());

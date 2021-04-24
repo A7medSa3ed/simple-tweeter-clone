@@ -9,8 +9,6 @@ export class TweetPage extends Component {
     return (
       <div>
         {/* id in tweet will display origin id tweet */}
-        {/* id > 20 here because if the user write any thing in browser like /tweet/faffa
-         it will show (this tweet doen't exist) and will show new tweet component*/}
         <Tweet tweetId={id} />
 
         {/* id here will till NewTweet component the new tweet will reply to this id tweet  */}

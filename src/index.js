@@ -20,7 +20,7 @@ ReactDOM.render(
  *** Work Flow Of Redux:-
       * create Our store and pass root reducer to it.
       * reducer is a function return new state passed on action.
-      * async dispatch will return function this function return function creator
+      * async dispatch will return function this function return action creator
       * function in dispatch will go to throw thunk and thunk check if this is function,
         it will pass dispatch and state to it so you can use them
       * so, any dispatch will send it's content to thunk Function and check,

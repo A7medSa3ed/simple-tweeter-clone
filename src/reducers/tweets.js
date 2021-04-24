@@ -1,6 +1,6 @@
 import {
   RECEIVE_TWEETS,
-  TOGGLE_TWEETS,
+  TOGGLE_LIKE_TWEETS,
   ADD_NEW_TWEET,
 } from "../actions/tweets";
 
@@ -11,7 +11,7 @@ export const tweets = (state = {}, action) => {
         ...state,
         ...action.tweets,
       };
-    case TOGGLE_TWEETS:
+    case TOGGLE_LIKE_TWEETS:
       return {
         ...state, // get all tweets state
         [action.id]: {

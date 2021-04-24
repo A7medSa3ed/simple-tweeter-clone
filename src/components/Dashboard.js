@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Tweet from "./Tweet";
+
 export class Dashboard extends Component {
   render() {
     return (
@@ -17,6 +18,8 @@ export class Dashboard extends Component {
     );
   }
 }
+
+// {tweets} here is comming from store state
 const mapStateToProps = ({ tweets }) => ({
   tweetsId: Object.keys(tweets).sort(
     (a, b) => tweets[b].timestamp - tweets[a].timestamp

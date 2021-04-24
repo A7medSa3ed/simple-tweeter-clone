@@ -21,6 +21,7 @@ class NewTweet extends Component {
     const { text } = this.state;
     const { dispatch, id } = this.props;
     !id && this.props.history.push("/");
+
     // if this tweet has id here, so this tweet is replying to this tweet id, if not so this is new tweet
     dispatch(handleAddNewTweet(text, id));
 
